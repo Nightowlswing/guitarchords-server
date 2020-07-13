@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-NAME = 'd8mpqnfp1ro6oe'
-USER = 'vxncheozjrbxpb'
-PASSWORD = '09e8d9447fd6d3e815bedfd60a9d0e35a6e57dc746fac04bbf1c17b9831e9d66'
-HOST = 'ec2-54-246-87-132.eu-west-1.compute.amazonaws.com'
-PORT = '5432'
+NAME = os.environ['DB_NAME']
+USER = os.environ['DB_USER']
+PASSWORD = os.environ['DB_PASSWORD']
+HOST = os.environ['DB_HOST']
+PORT = os.environ['DB_PORT']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,12 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b)kh#bbyj$m&z6ej%ye6w3e(l6-p2!3h5(3j^reilfwi5_$d3e'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['guitarchords.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['guitarchords-database.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
