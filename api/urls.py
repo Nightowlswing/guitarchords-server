@@ -10,15 +10,15 @@ urlpatterns = [
     path('addSong/', views.AddSongView.as_view()),
 
     path('allComp/', views.CompositorView.as_view()),
-    path('allSongsOfC/', views.SongsCompView.as_view()),
+    path('allSongsOfC/<int:pk>', views.SongsCompView.as_view()),
 
     path('article/<int:pk>', views.SingleArticleView.as_view()),
     path('ArticlesView/', views.ArticlesView.as_view()),
     path('addArticle/', views.AddArticleView.as_view()),
 
-    path('searchS/', views.SongSearchView.as_view()),
-    path('searchA/', views.ArticleSearchView.as_view()),
-    path('searchC/', views.CompositorSearchView.as_view()),
+    path('searchS/<str:query>', views.SongSearchView.as_view()),
+    path('searchA/<str:query>', views.ArticleSearchView.as_view()),
+    path('searchC/<str:query>', views.CompositorSearchView.as_view()),
 
 ]
 

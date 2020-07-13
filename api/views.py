@@ -73,9 +73,14 @@ class ArticlesView(APIView):
 
 class SingleArticleView(APIView):
     def get(self, request, pk, format=None):
-        article = Article.objects.get(pk = pk)
-        serializer = ArticleSerializer(article, many=True)
-        return Response(serializer.data)
+        try:
+            print('get')
+            article = Article.objects.get(pk = pk)
+            serializer = ArticleSerializer(article)
+            return Response(serializer.data)
+        except Song.DoesNotExist:
+            raise Http404
+
 
 class AddArticleView(APIView):
     def post(self, request, format=None):
@@ -90,20 +95,21 @@ class AddArticleView(APIView):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class SongSearchView(APIView):
-    def get(self, request, format = None):
-        songs = Song.objects.filter(name__contains = request.data['Q'])
+    def get(self, request, query, format = None):
+        songs = Song.objects.filter(name__contains = query)
         serializer = SongSerializer(songs, many=True)
         return Response(serializer.data)
 
 class CompositorSearchView(APIView):
-    def get(self, request, format = None):
-        songs = Compositor.objects.filter(name__contains = request.data['Q'])
-        serializer = SongSerializer(songs, many=True)
+    def get(self, request, query, format = None):
+        
+        compositors = Compositor.objects.filter(name__contains = query)
+        serializer = CompositorSerializer(compositors, many=True)
         return Response(serializer.data)
 
 class ArticleSearchView(APIView):
-    def get(self, request, format = None):
-        songs = Article.objects.filter(name__contains = request.data['Q'])
-        serializer = SongSerializer(songs, many=True)
+    def get(self, request, query, format = None):
+        article = Article.objects.filter(name__contains = query)
+        serializer = ArticleSerializer(article, many=True)
         return Response(serializer.data)
 
