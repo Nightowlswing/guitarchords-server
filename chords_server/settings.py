@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-NAME = os.environ['DB_NAME']
-USER = os.environ['DB_USER']
-PASSWORD = os.environ['DB_PASSWORD']
-HOST = os.environ['DB_HOST']
-PORT = os.environ['DB_PORT']
+NAME = 'd8mpqnfp1ro6oe'#os.environ['DB_NAME']
+USER = 'vxncheozjrbxpb'#os.environ['DB_USER']
+PASSWORD = '09e8d9447fd6d3e815bedfd60a9d0e35a6e57dc746fac04bbf1c17b9831e9d66'#os.environ['DB_PASSWORD']
+HOST = 'ec2-54-246-87-132.eu-west-1.compute.amazonaws.com'#os.environ['DB_HOST']
+PORT = '5432'#os.environ['DB_PORT']
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'ewqweqweqweqweqwewqe'#os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -134,5 +134,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
